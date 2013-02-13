@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="index.css"  />
+	<title>GeoNote Taking</title>
+</head>
+<body onload="init()">
+	<h1>GeoNotes</h1>
+	<fieldset>
+		<label for="note">
+			Notes
+			<textarea id="note" rows="5"></textarea>
+		</label>
+		<div class="buttons">
+			<button id="addNote" onclick="addNote()">Add</button>
+			<a href="#" id="removeNote" onclick="removeNotes()">Remove Notes</a>
+		</div>
+	</fieldset>
+	<ul id="notesList"></ul>
+
+<script type="text/javascript">
+
+	var lookup = {
+		notesList: document.getElementById("notesList"),
+		note: document.getElementById('note')
+	}
+
+	var STORE = "notes-web";
+	var notes = [];
+
+	function init() {
+		if (localStorage.getItem("notes-web") !== null) {
+			notes = JSON.parse(localStorage.getItem(STORE));
+		}
+		displayNotes();
+	}
+
+	function addNote() {
+		//1 - get position, success callback, add to localstorage
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var coords = position.coords;
+			notes.push({
+				content: lookup.note.value, latitude: coords.latitude, longitude: coords.longitude
+			});
+			localStorage.setItem(STORE, JSON.stringify(notes));
+
+			displayNotes();			
+		}, function() {
+			alert("Adding a note failed.");
+		});
+
+	}
+
+	function removeNotes() {
+		notes = [];
+		localStorage.removeItem(STORE);
+		displayNotes();
+	}
+
+	function displayNotes() {
+		//Important
+		var frag = document.createDocumentFragment();
+		notes.forEach(function(note) {
+
+			frag.appendChild(noteContent(note));
+		});
+		lookup.notesList.innerHTML = "";
+		lookup.notesList.appendChild(frag);
+	}
+
+	function noteContent(note) {
+		var li = document.createElement("li");
+
+		li.textContent = note.content;
+		li.addEventListener('click', function() {
+			window.open('https://maps.google.com/?q='+note.latitude+','+note.longitude);
+		});
+		return li;
+	}
+</script>
+</body>	
+</html>

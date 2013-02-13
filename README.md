@@ -1,4 +1,3 @@
-PhonegapPresentation
-====================
+<h1>Phonegap Presentation Source</h1>
 
-Phonegap Presentation Source Code
+<p>This repository contains all the source (skeletons and full implementations) for my introduction to Phonegap</p>

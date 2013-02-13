@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="phone.css"  />
+	<title>GeoNote Taking</title>
+</head>
+<body onload="init()">
+	<h1>GeoNotes</h1>
+	<fieldset>
+		<label for="note">
+			Notes
+			<textarea id="note" rows="5"></textarea>
+		</label>
+		<div class="buttons">
+			<button id="addNote" onclick="addNote()">Add</button>
+			<a href="#" id="removeNote" onclick="removeNotes()">Remove Notes</a>
+		</div>
+	</fieldset>
+	<ul id="notesList"></ul>
+
+<script type="text/javascript">
+
+	var lookup = {
+		notesList: document.getElementById("notesList"),
+		note: document.getElementById('note')
+	}
+
+	var notes = [];
+
+	function init() {
+		displayNotes();
+	}
+
+	function addNote() {
+		//1 - get position, success callback, add to localstorage
+		notes.push(lookup.note.value);
+		note.value = "";
+		displayNotes();
+	}
+
+	function removeNotes() {
+		notes = [];
+		displayNotes();
+	}
+
+	function displayNotes() {
+		//Important
+		var frag = document.createDocumentFragment();
+		notes.forEach(function(note) {
+			var li = document.createElement("li");
+			li.textContent = note;
+			frag.appendChild(li);
+		});
+		lookup.notesList.innerHTML = "";
+		lookup.notesList.appendChild(frag);
+	}
+</script>
+</body>	
+</html>

@@ -1,0 +1,88 @@
+fieldset {
+	border: 0;
+}
+
+fieldset > * {
+	vertical-align:top;
+	display:block;
+}
+
+ul li {
+	text-decoration: underline;
+}
+
+@media only screen and (max-width: 480px) {
+
+	fieldset, #notesList {
+		background-color:#ddd;
+		border-radius:5px;	
+		width:300px;
+	}
+
+	fieldset > * {
+		vertical-align:top;
+		display:block;
+	}
+	fieldset textarea {
+		width:200px;
+	}	
+
+	fieldset textarea:focus {
+		background-color:green;
+		color:white;
+	}
+
+	button {
+		padding:10px;
+		font-size:18px;
+	}
+
+	ul {
+		list-style: none;
+		width:200px;
+		margin:0;
+		padding:0;
+	}
+	ul li {
+		padding:5px;
+		background-color:#61B4CF;
+		margin:2px;
+		border:1px solid #024E68;
+		color:#FFF;
+	}
+
+	ul li:hover {
+		background-color:#3AAACF;
+		cursor:pointer;
+	}
+}
+
+@media only screen and (min-width: 481px) {
+	fieldset {
+		border:0;
+		background-color:#eee;
+		border-radius:5px;
+		width: 400px;
+	}
+
+	fieldset > *{
+		vertical-align:top;
+	}
+
+	textarea {
+		width:300px;
+	}
+
+	div.buttons {
+		text-align:right;
+	}
+
+	ul {
+		list-style: circle;
+	}
+
+	ul li:hover {
+		cursor:pointer;
+		text-decoration: underline;
+	}
+}	

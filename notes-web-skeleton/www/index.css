@@ -1,0 +1,22 @@
+fieldset, #notesList {
+	border:0;
+	background-color:#eee;
+	border-radius:5px;
+	width: 600px;
+}
+
+fieldset > *{
+	vertical-align:top;
+}
+
+textarea {
+	width:300px;
+}
+
+div.buttons {
+	text-align:right;
+}
+
+ul {
+	list-style: circle;
+}

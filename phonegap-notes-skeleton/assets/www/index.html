@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="index.css"  />
+	<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+	<title>GeoNote Taking</title>
+</head>
+<body onload="init()">
+	<fieldset>
+		<label for="note">Notes</label>
+		<textarea id="note"></textarea>
+		<select id="friends">
+			<option value="nobody">Choose a friend</option>
+		</select>
+		<button id="addNote" onclick="addNote()">Add</button>
+		<button id="removeNotes" onclick="removeNotes()">Remove Notes</button>
+	</fieldset>
+	<ul id="notesList"></ul>
+
+<script type="text/javascript">
+
+	var lookup = {
+		notesList: document.getElementById("notesList"),
+		note: document.getElementById('note'),
+		friends: document.getElementById('friends')
+	}
+
+	var STORE = "phonegap-notes-web-skeleton";
+	var notes = [];
+
+	function init() {
+		if (localStorage.getItem(STORE) !== null) {
+			notes = JSON.parse(localStorage.getItem(STORE));
+		}
+		displayNotes();
+	}
+
+	function addNote() {
+		//1 - get position, success callback, add to localstorage
+		var friend = lookup.friends.value;
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var coords = position.coords;
+			notes.push({
+				content: lookup.note.value, latitude: coords.latitude, longitude: coords.longitude, friend:friend
+			});
+			localStorage.setItem(STORE, JSON.stringify(notes));
+
+			displayNotes();			
+		}, function() {
+			alert("Adding a note failed.");
+		});
+
+	}
+
+	function removeNotes() {
+		localStorage.removeItem(STORE);
+		notes = [];
+		displayNotes();
+	}
+
+	function displayNotes() {
+		//Important
+		var frag = document.createDocumentFragment();
+		notes.forEach(function(note) {
+
+			frag.appendChild(noteContent(note));
+		});
+		lookup.notesList.innerHTML = "";
+		lookup.notesList.appendChild(frag);
+	}
+
+	function noteContent(note) {
+		var li = document.createElement("li");
+
+		li.textContent = note.content;
+		li.addEventListener('click', function() {
+			window.open('https://maps.google.com/?q='+note.latitude+','+note.longitude);
+		});
+		return li;
+	}
+
+	function error() {
+		alert("There was an error");
+	}
+
+</script>
+</body>	
+</html>
