@@ -1,22 +1,35 @@
-fieldset, #notesList {
-	border:0;
-	background-color:#eee;
-	border-radius:5px;
-	width: 600px;
+ul li {
+	text-decoration: underline;
 }
 
-fieldset > *{
-	vertical-align:top;
+#note {
+	width:200px;
 }
 
-textarea {
-	width:300px;
-}
-
-div.buttons {
-	text-align:right;
+#note:focus {
 }
 
 ul {
-	list-style: circle;
+	list-style: none;
+	width:200px;
+	margin:0;
+	padding:0;
 }
+ul li {
+	padding:5px;
+	background-color:#61B4CF;
+	margin:2px;
+	border:1px solid #024E68;
+	color:#FFF;
+}
+
+ul li:hover {
+	background-color:#3AAACF;
+	cursor:pointer;
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (min-width: 481px) {
+}	

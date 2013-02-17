@@ -1,34 +1,14 @@
-fieldset {
-	border: 0;
-}
-
-fieldset > * {
-	vertical-align:top;
-	display:block;
-}
-
 ul li {
 	text-decoration: underline;
 }
 
 @media only screen and (max-width: 480px) {
-
-	fieldset, #notesList {
-		background-color:#ddd;
-		border-radius:5px;	
-		width:300px;
-	}
-
-	fieldset > * {
-		vertical-align:top;
-		display:block;
-	}
-	fieldset textarea {
+	#note {
 		width:200px;
 	}	
 
-	fieldset textarea:focus {
-		background-color:green;
+	#note:focus {
+		background-color:blue;
 		color:white;
 	}
 
@@ -58,19 +38,19 @@ ul li {
 }
 
 @media only screen and (min-width: 481px) {
-	fieldset {
-		border:0;
-		background-color:#eee;
-		border-radius:5px;
-		width: 400px;
-	}
 
-	fieldset > *{
-		vertical-align:top;
-	}
+	#note {
+		display:block;
+		width:400px;
+		height:100px;
+		font-size:110%;
+		background-color:green;
+		color:white;
+	}	
 
-	textarea {
-		width:300px;
+	#note:focus {
+		background-color:red;
+		
 	}
 
 	div.buttons {
@@ -79,6 +59,7 @@ ul li {
 
 	ul {
 		list-style: circle;
+		width:400px;
 	}
 
 	ul li:hover {

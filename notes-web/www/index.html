@@ -3,20 +3,30 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="index.css"  />
 	<title>GeoNote Taking</title>
-</head>
+	<link rel="stylesheet" href="libs/jquery.mobile-1.2.0.min.css" />
+	<script src="libs/jquery-1.9.1.min.js"></script>
+	<script src="libs/jquery-migrate-1.1.0.min.js"></script>
+	<script src="libs/jquery.mobile-1.2.0.min.js"></script>		
 <body onload="init()">
-	<h1>GeoNotes</h1>
-	<fieldset>
-		<label for="note">
-			Notes
-			<textarea id="note" rows="5"></textarea>
-		</label>
-		<div class="buttons">
-			<button id="addNote" onclick="addNote()">Add</button>
-			<a href="#" id="removeNote" onclick="removeNotes()">Remove Notes</a>
-		</div>
-	</fieldset>
-	<ul id="notesList"></ul>
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>GeoNotes</h1>
+		</div><!-- /header -->
+
+		<div data-role="content">
+			<div data-role="fieldcontain">	
+				<label for="note">Notes</label>
+				<textarea id="note" rows="5"></textarea>
+			</div>
+			<div data-role="controlgroup" data-type="horizontal" >
+				<button data-theme="b" data-icon="add" data-role="button" id="addNote" onclick="addNote()">Add</button>
+				<button data-theme="b" data-icon="delete" data-role="button" id="removeNotes" onclick="removeNotes()">Remove Notes</button>
+			</div>
+			<ul id="notesList" data-inset="true" data-role="listview"></ul>	
+		</div><!-- /content -->
+
+	</div><!-- /page -->
 
 <script type="text/javascript">
 
