@@ -27,9 +27,3 @@ ul li:hover {
 	background-color:#3AAACF;
 	cursor:pointer;
 }
-
-@media only screen and (max-width: 480px) {
-}
-
-@media only screen and (min-width: 481px) {
-}	
